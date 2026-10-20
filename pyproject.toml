@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "muse-agent-adk"
+version = "0.1.0"
+description = "muse-agent rebuilt on Google ADK: same modular architecture, ADK execution layer (LlmAgent/Runner/BaseLlm)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "joesaas" }]
+dependencies = [
+    "google-adk>=2,<3",
+]
+
+[project.optional-dependencies]
+litellm = ["litellm>=1.40"]
+test = ["pytest>=8"]
+
+[project.scripts]
+muse-agent-adk = "muse_agent_adk.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+muse_agent_adk = ["templates/**/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
